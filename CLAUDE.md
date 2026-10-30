@@ -108,7 +108,14 @@ research/       заметки по сегментам и источникам, 
 outreach/       черновики первых касаний и follow-up (по файлу на лид или на сегмент)
 reports/        отчёт после каждого запуска: ГГГГ-ММ-ДД.md
 .claude/agents/ субагенты: lead-researcher, lead-qualifier, outreach-writer, crm-keeper
+tools/          crm_check.py — проверка базы: формат, дубли, стоп-лист
 ```
+
+### Конвейер запуска
+`lead-researcher` (research/) → `crm-keeper` (дубли и стоп-лист) → `lead-qualifier` (оценка, data/leads.csv)
+→ `outreach-writer` (черновики в outreach/ для лидов с оценкой 8–10) → `crm-keeper` (финальная проверка) → отчёт в reports/.
+
+Проверка базы: `python3 tools/crm_check.py`. Проверка кандидата: `python3 tools/crm_check.py --candidate "Название" --site домен --inn ИНН`.
 
 ### Формат data/leads.csv
 `id, компания, сегмент, район, адрес, сайт, соцсети, ИНН, ЛПР и должность, рабочий контакт, признаки соответствия, оценка, обоснование, рекомендуемые позиции, канал первого касания, статус, дата, источник`
